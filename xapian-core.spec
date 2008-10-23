@@ -1,10 +1,11 @@
 # Conditional build:
 %bcond_without	apidocs		# do not build and package API docs
+%bcond_without	static_libs	# don't build static library
 #
 Summary:	The Xapian Probabilistic Information Retrieval Library
 Name:		xapian-core
 Version:	1.0.4
-Release:	0.1
+Release:	0.2
 License:	GPL
 Group:		Applications/Databases
 URL:		http://www.xapian.org/
@@ -53,6 +54,14 @@ to easily add advanced indexing and search facilities to applications.
 This package provides the files needed for building packages which use
 Xapian.
 
+%package static
+Summary:	Static Xapian library
+Group:		Development/Libraries
+Requires:	%{name}-devel = %{version}-%{release}
+
+%description static
+Static Xapian library.
+
 %prep
 %setup -q
 %patch0 -p0
@@ -61,7 +70,8 @@ cp -a examples _examples
 rm -f _examples/Makefile*
 
 %build
-%configure
+%configure \
+	--%{?with_static_libs:en}%{!?with_static_libs:dis}able-static
 %{__make}
 
 %install
@@ -124,11 +134,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_includedir}/xapian
 %{_includedir}/xapian.h
 %{_libdir}/libxapian.so
-%{_libdir}/libxapian.a
 %{_libdir}/libxapian.la
 %{_aclocaldir}/xapian.m4
 
 %{_examplesdir}/%{name}-%{version}
+
+%if %{with static_libs}
+%files static
+%defattr(644,root,root,755)
+%{_libdir}/libxapian.a
+%endif
 
 %if %{with apidocs}
 %files apidocs
