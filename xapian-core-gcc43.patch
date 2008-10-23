@@ -1,0 +1,49 @@
+Index: api/maptermlist.h
+===================================================================
+--- api/maptermlist.h.orig
++++ api/maptermlist.h
+@@ -29,6 +29,8 @@
+ 
+ #include "omassert.h"
+ 
++#include <cstdlib>
++
+ using namespace std;
+ 
+ class MapTermList : public TermList {
+Index: common/vectortermlist.h
+===================================================================
+--- common/vectortermlist.h.orig
++++ common/vectortermlist.h
+@@ -28,6 +28,7 @@
+ 
+ #include <list>
+ #include <vector>
++#include <cstdlib>
+ 
+ using namespace std;
+ 
+Index: backends/alltermslist.cc
+===================================================================
+--- backends/alltermslist.cc.orig
++++ backends/alltermslist.cc
+@@ -25,6 +25,7 @@
+ #include "omassert.h"
+ 
+ #include <string>
++#include <cstdlib>
+ 
+ using namespace std;
+ 
+Index: bin/xapian-progsrv.cc
+===================================================================
+--- bin/xapian-progsrv.cc.orig
++++ bin/xapian-progsrv.cc
+@@ -26,6 +26,7 @@
+ 
+ #include <iostream>
+ #include <string>
++#include <cstdlib>
+ 
+ using namespace std;
+ 
