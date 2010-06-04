@@ -1,11 +1,12 @@
+#
 # Conditional build:
 %bcond_without	apidocs		# do not build and package API docs
 %bcond_without	static_libs	# don't build static library
-#
+
 Summary:	The Xapian Probabilistic Information Retrieval Library
 Name:		xapian-core
 Version:	1.0.16
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/Databases
 URL:		http://www.xapian.org/
@@ -146,7 +147,8 @@ rm -rf $RPM_BUILD_ROOT
 %if %{with apidocs}
 %files apidocs
 %defattr(644,root,root,755)
-%doc %{_docdir}/%{name}-apidocs-%{version}/apidoc.pdf
-%doc %{_docdir}/%{name}-apidocs-%{version}/*.html
-%doc %{_docdir}/%{name}-apidocs-%{version}/apidoc
+%dir %{_docdir}/%{name}-apidocs-%{version}
+%{_docdir}/%{name}-apidocs-%{version}/apidoc.pdf
+%{_docdir}/%{name}-apidocs-%{version}/*.html
+%{_docdir}/%{name}-apidocs-%{version}/apidoc
 %endif
