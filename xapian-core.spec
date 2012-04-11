@@ -5,13 +5,13 @@
 
 Summary:	The Xapian Probabilistic Information Retrieval Library
 Name:		xapian-core
-Version:	1.0.16
-Release:	2
+Version:	1.2.9
+Release:	1
 License:	GPL
 Group:		Applications/Databases
 URL:		http://www.xapian.org/
 Source0:	http://www.oligarchy.co.uk/xapian/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	19756e128d804faa6e7975a629ca3b70
+# Source0-md5:	909dd02931fe8f37690aa82a4daaa441
 BuildRequires:	libstdc++-devel
 BuildRequires:	zlib-devel
 Requires:	%{name}-libs = %{version}-%{release}
@@ -97,41 +97,44 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS COPYING ChangeLog HACKING INSTALL NEWS PLATFORMS README
 %attr(755,root,root) %{_bindir}/xapian-tcpsrv
 %attr(755,root,root) %{_bindir}/xapian-progsrv
-%attr(755,root,root) %{_bindir}/quartzcheck
-%attr(755,root,root) %{_bindir}/quartzcompact
-%attr(755,root,root) %{_bindir}/quartzdump
 %attr(755,root,root) %{_bindir}/quest
 %attr(755,root,root) %{_bindir}/delve
 %attr(755,root,root) %{_bindir}/copydatabase
 %attr(755,root,root) %{_bindir}/simpleindex
 %attr(755,root,root) %{_bindir}/simplesearch
 %attr(755,root,root) %{_bindir}/simpleexpand
+%attr(755,root,root) %{_bindir}/xapian-chert-update
 %attr(755,root,root) %{_bindir}/xapian-compact
 %attr(755,root,root) %{_bindir}/xapian-check
 %attr(755,root,root) %{_bindir}/xapian-inspect
+%attr(755,root,root) %{_bindir}/xapian-metadata
+%attr(755,root,root) %{_bindir}/xapian-replicate
+%attr(755,root,root) %{_bindir}/xapian-replicate-server
 %{_mandir}/man1/xapian-check.1*
+%{_mandir}/man1/xapian-chert-update.1*
 %{_mandir}/man1/xapian-inspect.1*
+%{_mandir}/man1/xapian-metadata.1*
 %{_mandir}/man1/copydatabase.1*
 %{_mandir}/man1/delve.1*
-%{_mandir}/man1/quartzcheck.1*
-%{_mandir}/man1/quartzcompact.1*
-%{_mandir}/man1/quartzdump.1*
 %{_mandir}/man1/quest.1*
 %{_mandir}/man1/xapian-compact.1*
 %{_mandir}/man1/xapian-config.1*
 %{_mandir}/man1/xapian-progsrv.1*
 %{_mandir}/man1/xapian-tcpsrv.1*
+%{_mandir}/man1/xapian-replicate.1*
+%{_mandir}/man1/xapian-replicate-server.1*
 
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libxapian.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libxapian.so.15
+%attr(755,root,root) %ghost %{_libdir}/libxapian.so.22
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/xapian-config
 %{_includedir}/xapian
 %{_includedir}/xapian.h
+%{_libdir}/cmake/xapian
 %{_libdir}/libxapian.so
 %{_libdir}/libxapian.la
 %{_aclocaldir}/xapian.m4
