@@ -103,7 +103,7 @@ cp -a examples _examples
 
 %build
 %configure \
-	--enable-static%{!?with_static_libs=no}
+	--enable-static%{!?with_static_libs:=no}
 %{__make}
 
 %install
@@ -128,7 +128,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS COPYING ChangeLog HACKING INSTALL NEWS PLATFORMS README
+%doc AUTHORS ChangeLog HACKING INSTALL NEWS PLATFORMS README
 %attr(755,root,root) %{_bindir}/copydatabase
 %attr(755,root,root) %{_bindir}/delve
 %attr(755,root,root) %{_bindir}/quest
