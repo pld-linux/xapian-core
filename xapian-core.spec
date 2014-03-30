@@ -2,12 +2,12 @@
 # Conditional build:
 %bcond_without	apidocs		# do not build and package API docs
 %bcond_without	static_libs	# don't build static library
-#
+
 Summary:	The Xapian Probabilistic Information Retrieval Library
 Summary(pl.UTF-8):	Xapian - biblioteka uzyskiwania informacji probabilistycznych
 Name:		xapian-core
 Version:	1.2.12
-Release:	1
+Release:	2
 License:	GPL v2+
 Group:		Applications/Databases
 Source0:	http://oligarchy.co.uk/xapian/%{version}/%{name}-%{version}.tar.gz
@@ -42,7 +42,7 @@ to easily add advanced indexing and search facilities to applications.
 This package provides the library for applications using Xapian
 functionality.
 
-%description libs 
+%description libs
 Xapian to mająca otwarte źródła biblioteka do uzyskiwania informacji
 probabilistycznych. Oferuje wysoce adoptowalne narzędzia pozwalające
 programistom łatwo dodawać do aplikacji zaawansowane możliwości
@@ -88,6 +88,9 @@ Statyczna biblioteka Xapian.
 Summary:	Xapian API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki Xapian
 Group:		Documentation
+%if "%{_rpmversion}" >= "5"
+BuildArch:	noarch
+%endif
 
 %description apidocs
 API and internal documentation for Xapian library.
