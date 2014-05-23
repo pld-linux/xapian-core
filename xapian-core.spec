@@ -6,12 +6,12 @@
 Summary:	The Xapian Probabilistic Information Retrieval Library
 Summary(pl.UTF-8):	Xapian - biblioteka uzyskiwania informacji probabilistycznych
 Name:		xapian-core
-Version:	1.2.12
-Release:	2
+Version:	1.2.17
+Release:	1
 License:	GPL v2+
 Group:		Applications/Databases
-Source0:	http://oligarchy.co.uk/xapian/%{version}/%{name}-%{version}.tar.gz
-# Source0-md5:	faf33a3945edbe4c848627750856cbeb
+Source0:	http://oligarchy.co.uk/xapian/%{version}/%{name}-%{version}.tar.xz
+# Source0-md5:	493117bf45e5471e86b4fc5d6d8069dc
 URL:		http://www.xapian.org/
 BuildRequires:	libstdc++-devel
 BuildRequires:	libuuid-devel
@@ -42,7 +42,7 @@ to easily add advanced indexing and search facilities to applications.
 This package provides the library for applications using Xapian
 functionality.
 
-%description libs
+%description libs -l pl.UTF-8
 Xapian to mająca otwarte źródła biblioteka do uzyskiwania informacji
 probabilistycznych. Oferuje wysoce adoptowalne narzędzia pozwalające
 programistom łatwo dodawać do aplikacji zaawansowane możliwości
@@ -123,6 +123,8 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 cp -a ChangeLog.examples _examples/* $RPM_BUILD_ROOT%{_examplesdir}/%{name}-%{version}
 
+%{__rm} $RPM_BUILD_ROOT%{_libdir}/libxapian.la
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -131,7 +133,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%doc AUTHORS ChangeLog HACKING INSTALL NEWS PLATFORMS README
+%doc AUTHORS ChangeLog* HACKING NEWS PLATFORMS README
 %attr(755,root,root) %{_bindir}/copydatabase
 %attr(755,root,root) %{_bindir}/delve
 %attr(755,root,root) %{_bindir}/quest
@@ -170,7 +172,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/xapian-config
 %attr(755,root,root) %{_libdir}/libxapian.so
-%{_libdir}/libxapian.la
 %{_libdir}/cmake/xapian
 %{_includedir}/xapian
 %{_includedir}/xapian.h
