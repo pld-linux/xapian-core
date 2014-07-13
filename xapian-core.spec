@@ -6,12 +6,12 @@
 Summary:	The Xapian Probabilistic Information Retrieval Library
 Summary(pl.UTF-8):	Xapian - biblioteka uzyskiwania informacji probabilistycznych
 Name:		xapian-core
-Version:	1.2.17
+Version:	1.2.18
 Release:	1
 License:	GPL v2+
 Group:		Applications/Databases
 Source0:	http://oligarchy.co.uk/xapian/%{version}/%{name}-%{version}.tar.xz
-# Source0-md5:	493117bf45e5471e86b4fc5d6d8069dc
+# Source0-md5:	0ccbf68ade12e7b1ead10c57f4447899
 URL:		http://www.xapian.org/
 BuildRequires:	libstdc++-devel
 BuildRequires:	libuuid-devel
