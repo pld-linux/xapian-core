@@ -1,19 +1,27 @@
 #
 # Conditional build:
-%bcond_without	apidocs		# do not build and package API docs
-%bcond_without	static_libs	# don't build static library
+%bcond_without	apidocs		# API documentation
+%bcond_with	sse		# SSE instructions
+%bcond_with	sse2		# SSE2 instructions
+%bcond_without	static_libs	# static library
 
+%ifarch pentium4 %{x8664} x32
+%define	with_sse2	1
+%endif
+%ifarch pentium3 pentium4 %{x8664} x32
+%define	with_sse	1
+%endif
 Summary:	The Xapian Probabilistic Information Retrieval Library
 Summary(pl.UTF-8):	Xapian - biblioteka uzyskiwania informacji probabilistycznych
 Name:		xapian-core
-Version:	1.2.23
+Version:	1.4.4
 Release:	1
 License:	GPL v2+
 Group:		Applications/Databases
-Source0:	http://oligarchy.co.uk/xapian/%{version}/%{name}-%{version}.tar.xz
-# Source0-md5:	513b10125090265b5aeb7fb57fd3a708
-URL:		http://www.xapian.org/
-BuildRequires:	libstdc++-devel
+Source0:	https://oligarchy.co.uk/xapian/%{version}/%{name}-%{version}.tar.xz
+# Source0-md5:	919ad9a80a7c6a01ab4721670bb29cab
+URL:		https://xapian.org/
+BuildRequires:	libstdc++-devel >= 6:4.7
 BuildRequires:	libuuid-devel
 BuildRequires:	zlib-devel
 Requires:	%{name}-libs = %{version}-%{release}
@@ -54,7 +62,7 @@ Summary:	Files needed for building packages which use Xapian
 Summary(pl.UTF-8):	Pliki niezbędne do tworzenia pakietów wykorzystujących Xapiana
 Group:		Development/Libraries
 Requires:	%{name}-libs = %{version}-%{release}
-Requires:	libstdc++-devel
+Requires:	libstdc++-devel >= 6:4.7
 Requires:	libuuid-devel
 Requires:	zlib-devel
 
@@ -106,6 +114,7 @@ cp -a examples _examples
 
 %build
 %configure \
+	--enable-sse=%{!?with_sse:no}%{?with_sse:sse%{?with_sse2:2}} \
 	--enable-static%{!?with_static_libs:=no}
 %{__make}
 
@@ -135,28 +144,25 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog* HACKING NEWS PLATFORMS README
 %attr(755,root,root) %{_bindir}/copydatabase
-%attr(755,root,root) %{_bindir}/delve
 %attr(755,root,root) %{_bindir}/quest
 %attr(755,root,root) %{_bindir}/simpleexpand
 %attr(755,root,root) %{_bindir}/simpleindex
 %attr(755,root,root) %{_bindir}/simplesearch
 %attr(755,root,root) %{_bindir}/xapian-check
-%attr(755,root,root) %{_bindir}/xapian-chert-update
 %attr(755,root,root) %{_bindir}/xapian-compact
-%attr(755,root,root) %{_bindir}/xapian-inspect
+%attr(755,root,root) %{_bindir}/xapian-delve
 %attr(755,root,root) %{_bindir}/xapian-metadata
 %attr(755,root,root) %{_bindir}/xapian-progsrv
 %attr(755,root,root) %{_bindir}/xapian-replicate
 %attr(755,root,root) %{_bindir}/xapian-replicate-server
 %attr(755,root,root) %{_bindir}/xapian-tcpsrv
+%{_datadir}/xapian-core
 %{_mandir}/man1/copydatabase.1*
-%{_mandir}/man1/delve.1*
 %{_mandir}/man1/quest.1*
 %{_mandir}/man1/xapian-check.1*
-%{_mandir}/man1/xapian-chert-update.1*
 %{_mandir}/man1/xapian-compact.1*
 %{_mandir}/man1/xapian-config.1*
-%{_mandir}/man1/xapian-inspect.1*
+%{_mandir}/man1/xapian-delve.1*
 %{_mandir}/man1/xapian-metadata.1*
 %{_mandir}/man1/xapian-progsrv.1*
 %{_mandir}/man1/xapian-replicate.1*
@@ -166,7 +172,7 @@ rm -rf $RPM_BUILD_ROOT
 %files libs
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libxapian.so.*.*.*
-%attr(755,root,root) %ghost %{_libdir}/libxapian.so.22
+%attr(755,root,root) %ghost %{_libdir}/libxapian.so.30
 
 %files devel
 %defattr(644,root,root,755)
@@ -189,7 +195,6 @@ rm -rf $RPM_BUILD_ROOT
 %files apidocs
 %defattr(644,root,root,755)
 %dir %{_docdir}/%{name}-apidocs-%{version}
-%{_docdir}/%{name}-apidocs-%{version}/apidoc.pdf
 %{_docdir}/%{name}-apidocs-%{version}/*.html
 %{_docdir}/%{name}-apidocs-%{version}/apidoc
 %endif
