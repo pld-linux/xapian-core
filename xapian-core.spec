@@ -14,12 +14,12 @@
 Summary:	The Xapian Probabilistic Information Retrieval Library
 Summary(pl.UTF-8):	Xapian - biblioteka uzyskiwania informacji probabilistycznych
 Name:		xapian-core
-Version:	1.4.4
+Version:	1.4.11
 Release:	1
 License:	GPL v2+
 Group:		Applications/Databases
 Source0:	https://oligarchy.co.uk/xapian/%{version}/%{name}-%{version}.tar.xz
-# Source0-md5:	919ad9a80a7c6a01ab4721670bb29cab
+# Source0-md5:	e66b2d585e2f56d3b67d10667196391b
 URL:		https://xapian.org/
 BuildRequires:	libstdc++-devel >= 6:4.7
 BuildRequires:	libuuid-devel
@@ -152,6 +152,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/xapian-compact
 %attr(755,root,root) %{_bindir}/xapian-delve
 %attr(755,root,root) %{_bindir}/xapian-metadata
+%attr(755,root,root) %{_bindir}/xapian-pos
 %attr(755,root,root) %{_bindir}/xapian-progsrv
 %attr(755,root,root) %{_bindir}/xapian-replicate
 %attr(755,root,root) %{_bindir}/xapian-replicate-server
@@ -164,6 +165,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_mandir}/man1/xapian-config.1*
 %{_mandir}/man1/xapian-delve.1*
 %{_mandir}/man1/xapian-metadata.1*
+%{_mandir}/man1/xapian-pos.1*
 %{_mandir}/man1/xapian-progsrv.1*
 %{_mandir}/man1/xapian-replicate.1*
 %{_mandir}/man1/xapian-replicate-server.1*
