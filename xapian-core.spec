@@ -23,6 +23,7 @@ Source0:	https://oligarchy.co.uk/xapian/%{version}/%{name}-%{version}.tar.xz
 URL:		https://xapian.org/
 BuildRequires:	libstdc++-devel >= 6:4.7
 BuildRequires:	libuuid-devel
+BuildRequires:	rpmbuild(macros) >= 1.752
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
 BuildRequires:	zlib-devel
@@ -98,9 +99,7 @@ Statyczna biblioteka Xapian.
 Summary:	Xapian API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki Xapian
 Group:		Documentation
-%if "%{_rpmversion}" >= "5"
-BuildArch:	noarch
-%endif
+%{?noarchpackage}
 
 %description apidocs
 API and internal documentation for Xapian library.
