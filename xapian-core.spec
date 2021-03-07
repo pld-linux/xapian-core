@@ -99,7 +99,7 @@ Statyczna biblioteka Xapian.
 Summary:	Xapian API documentation
 Summary(pl.UTF-8):	Dokumentacja API biblioteki Xapian
 Group:		Documentation
-%{?noarchpackage}
+BuildArch:	noarch
 
 %description apidocs
 API and internal documentation for Xapian library.
